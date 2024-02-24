@@ -11,9 +11,6 @@ import OpenTask from "./OpenTask";
 import Api from "../../api.config";
 
 function TaskPage() {
-  const authority = useSelector(
-    (state: RootState) => state.authority.authority
-  );
   const loggedIn = useSelector((state: RootState) => state.loggedIn.loggedIn);
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);

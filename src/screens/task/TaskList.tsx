@@ -11,9 +11,6 @@ import Api from "../../api.config";
 import TaskItem, { TaskEntry } from "./TaskItem";
 
 function TaskList() {
-  const authority = useSelector(
-    (state: RootState) => state.authority.authority
-  );
   const loggedIn = useSelector((state: RootState) => state.loggedIn.loggedIn);
   const [data, setData] = useState<TaskEntry[] | null>(null);
   const [error, setError] = useState(false);
