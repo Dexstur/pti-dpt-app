@@ -30,9 +30,11 @@ function ViewTask() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [expiry, setExpiry] = useState("");
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const currentDate = Date.parse(new Date().toString());
 
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id") || "";
@@ -68,6 +70,7 @@ function ViewTask() {
         const { data, lecturer, student } = res.data;
         setFound(true);
         setData(data);
+        setExpiry(data.deadline);
         setLecturer(lecturer);
         setStudent(student);
       })
@@ -145,6 +148,15 @@ function ViewTask() {
             <p className="text-lg">
               {data?.lecturer.lastName}, {data?.lecturer.firstName}
             </p>
+          </div>
+          <div className="text-center text-lg">
+            {currentDate > Date.parse(expiry) ? (
+              <p className="text-red-500">Closed</p>
+            ) : (
+              <p className="text-green-500">
+                Open till {new Date(expiry).toString()}
+              </p>
+            )}
           </div>
         </div>
       </div>
